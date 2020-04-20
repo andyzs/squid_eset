@@ -26,6 +26,8 @@ acl Safe_ports port 591 # filemaker
 acl Safe_ports port 777 # multiling http
 acl Safe_ports port 53
 acl CONNECT method CONNECT
+cache_peer 10.1.12.41 parent 3128 0 no-query default
+never_direct allow all
 # Deny requests to certain unsafe ports
 http_access deny !Safe_ports
 # Deny CONNECT to other than secure SSL ports
@@ -41,7 +43,7 @@ http_access deny all
 http_port 3128
 # Uncomment and adjust the following to add a disk cache directory.
 cache_dir ufs /var/spool/squid 5000 16 256 max-size=10000000
-cache_mem 1000 MB
+cache_mem 2048 MB
 # Leave coredumps in the first cache dir
 coredump_dir /var/spool/squid
 # Add any of your own refresh_pattern entries above these.
