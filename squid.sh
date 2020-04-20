@@ -4,15 +4,13 @@ export DEBIAN_FRONTEND=noninteractive
 locale-gen --purge en_US.UTF-8
 echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
 ## Setting Repositories, Update and Upgrade system
-sed -i 's/http://id.archive.ubuntu.com/http://kartolo.sby.datautama.net.id/g' /etc/apt/sources.list
+sed -i 's/http://id.archive.ubuntu.com/http://buaya.klas.or.id/g' /etc/apt/sources.list
 apt -y update
 apt -y upgrade
 apt install squid
 
 ##Config squid
 mv /etc/squid/squid.conf /etc/squid/squid.bak
-
-
 cat <<EOF>> /etc/squid/squid.conf
 # _____Squid config for eset_____
 acl SSL_ports port 443
