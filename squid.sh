@@ -124,4 +124,4 @@ refresh_pattern . 0 20% 4320
 
 # ——————- End Konfigurasi Squid ———————–
 EOF
-systemctl enable squid && systemctl restart squid
+systemctl enable squid && systemctl stop squid && squid3 -z && systemctl start squid
