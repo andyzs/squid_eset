@@ -7,7 +7,7 @@ echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
 sed -i 's/http://id.archive.ubuntu.com/http://buaya.klas.or.id/g' /etc/apt/sources.list
 apt -y update
 apt -y upgrade
-apt install squid
+apt -y install squid
 
 ##Config squid
 mv /etc/squid/squid.conf /etc/squid/squid.bak
