@@ -20,8 +20,8 @@ cat <<EOF>> /etc/squid/squid.conf
 # Adapt to list your (internal) IP networks from where browsing
 # should be allowed
 acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
-acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
-acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+#acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+#acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 #acl localnet src fc00::/7       # RFC 4193 local private network range
 #acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
 
@@ -104,7 +104,7 @@ acl allowed dstdomain h1-f5lb01-s.eset.com h3-f5lb01-s.eset.com h5-f5lb01-s.eset
 #telementery
 acl allowed dstdomain gallup.eset.com
 # And finally deny all other access to this proxy
-http_access allow allowed
+http_access allow localnet allowed
 http_access deny all
 http_port 3128
 # Uncomment and adjust the following to add a disk cache directory.
@@ -124,4 +124,5 @@ refresh_pattern . 0 20% 4320
 
 # ——————- End Konfigurasi Squid ———————–
 EOF
+cat /etc/hostname >> /etc/squid/squid.conf
 systemctl enable squid && systemctl stop squid && squid3 -z && systemctl start squid
